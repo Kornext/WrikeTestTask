@@ -14,7 +14,7 @@
 //import java.util.List;
 //import java.util.Random;
 //
-////TODO проверка твиттера
+//
 //
 //public class TestWrike extends WebDriverSetting {
 //
