@@ -69,8 +69,8 @@ public class InterviewPage extends BasePage {
     }
 
     public void switchToGoogleFrame() {
-        driver.switchTo().frame(driver.findElement
-                (By.xpath("/html/body/div[6]/div/iframe")));
+        System.out.println(driver.getCurrentUrl());
+        driver.switchTo().frame(driver.findElement(By.cssSelector("#I0_1538691000587")));
         buttonNoGoogleFrame = driver.findElement
                 (By.xpath("/html/body/c-wiz/div/div/div[2]/div[4]/span[1]/div/content/span"));
     }

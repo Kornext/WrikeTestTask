@@ -12,13 +12,17 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 
+@RunWith(Parameterized.class)
 public class FirstTestCase extends WebDriverSetting {
 
     HomePage homePage;
 
     InterviewPage interviewPage;
 
-    public FirstTestCase() {
+    public String nameDriver;
+
+    public FirstTestCase(String ss) {
+        super(ss);
         interviewPage = new InterviewPage(driver);
         homePage = new HomePage(driver);
     }
@@ -43,6 +47,7 @@ public class FirstTestCase extends WebDriverSetting {
         homePage.buttonCreateAccClick();
         Assert.assertEquals(interviewPage.getPageURL(), driver.getCurrentUrl());
         interviewPage.fillElements();
+        Thread.sleep(4000);
         interviewPage.closeGoogleFrame();
 
 
@@ -64,5 +69,11 @@ public class FirstTestCase extends WebDriverSetting {
                 "https://www.facebook.com/Wrike", interviewPage.getFacebookURL());
         Assert.assertEquals("Facebook Image isnt correct",
                 "/content/themes/wrike/dist/img/sprite/vector/footer-icons.symbol.svg?v1#twitter", interviewPage.getFacebookImgURL());
+    }
+
+    @Parameterized.Parameters
+    public static Collection<Object> Browser() {
+        Object[] object = new Object[] {"firefox", "chrome"};
+        return Arrays.asList(object);
     }
 }
