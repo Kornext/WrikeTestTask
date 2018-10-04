@@ -10,10 +10,10 @@ import java.util.concurrent.TimeUnit;
 
 public class BasePage {
 
-    public FirefoxDriver driver;
+    public WebDriver driver;
     public WebDriverWait driverWait;
 
-    public BasePage(FirefoxDriver driver) {
+    public BasePage(WebDriver driver) {
         this.driver = driver;
         driverWait= new WebDriverWait(driver, 5000);
         driver.manage().timeouts().implicitlyWait(8, TimeUnit.SECONDS); // Find By Locator wait

@@ -15,7 +15,7 @@ public class HomePage extends BasePage {
     public WebElement emailTextField;
     public WebElement buttonCreateMyWrikeAcc;
 
-    public HomePage(FirefoxDriver driver) {
+    public HomePage(WebDriver driver) {
         super(driver);
     }
 

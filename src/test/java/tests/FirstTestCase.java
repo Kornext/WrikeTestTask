@@ -2,11 +2,20 @@ package tests;
 
 import org.junit.Assert;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.Parameterized;
 import pages.*;
+
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.List;
 
 public class FirstTestCase extends WebDriverSetting {
 
     HomePage homePage;
+
     InterviewPage interviewPage;
 
     public FirstTestCase() {
@@ -20,7 +29,6 @@ public class FirstTestCase extends WebDriverSetting {
         homePage.getPage();
         homePage.fillElements();
         homePage.buttonGetStartForFree.click();
-        System.out.println("1 Step Completed");
 
         //Fill in the email field with random generated value of email with mask
         // “<random_text>+wpt@wriketask.qaa” (e.g. “abcdef+wpt@wriketask.qaa”);

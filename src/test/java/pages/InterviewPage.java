@@ -23,16 +23,17 @@ public class InterviewPage extends BasePage {
     List<WebElement> radioDiv = new ArrayList<>();
     WebElement buttonNoGoogleFrame;
 
-    public InterviewPage(FirefoxDriver driver) {
+    public InterviewPage(WebDriver driver) {
         super(driver);
     }
 
     public void fillElements() {
         if (driver.getCurrentUrl().equals(pageURL)) {
-            facebookURL = driver.findElementByXPath
-                    ("/html/body/div[1]/div/div[3]/div/div[1]/div/ul/li[2]/a").getAttribute("href");
-            facebookImgURL = driver.findElementByCssSelector("li.wg-footer__social-item:nth-child(1) > " +
-                    "a:nth-child(1) > svg:nth-child(1) > use:nth-child(1)").getAttribute("xlink:href");
+            facebookURL = driver.findElement(By.xpath
+                    ("/html/body/div[1]/div/div[3]/div/div[1]/div/ul/li[2]/a")).getAttribute("href");
+
+            facebookImgURL = driver.findElement(By.cssSelector("li.wg-footer__social-item:nth-child(1) > " +
+                    "a:nth-child(1) > svg:nth-child(1) > use:nth-child(1)")).getAttribute("xlink:href");
             buttonResendEmail = driver.findElement
                     (By.xpath("/html/body/div[1]/main/div/div/div[2]/div/div[1]/p[3]/button"));
             buttonSubmitResult = driver.findElement
