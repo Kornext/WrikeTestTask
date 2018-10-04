@@ -4,13 +4,21 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.util.concurrent.TimeUnit;
 
 public class BasePage {
 
     public FirefoxDriver driver;
+    public WebDriverWait driverWait;
 
     public BasePage(FirefoxDriver driver) {
         this.driver = driver;
+        driverWait= new WebDriverWait(driver, 5000);
+        driver.manage().timeouts().implicitlyWait(8, TimeUnit.SECONDS); // Find By Locator wait
+        driver.manage().timeouts().pageLoadTimeout(8, TimeUnit.SECONDS); //Load Page wait
+        driver.manage().timeouts().setScriptTimeout(8, TimeUnit.SECONDS); //JS Scrip Wait
     }
 
     public void click(By elementLocation) {

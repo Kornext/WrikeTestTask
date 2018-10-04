@@ -4,6 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,7 +37,8 @@ public class InterviewPage extends BasePage {
                     (By.xpath("/html/body/div[1]/main/div/div/div[2]/div/div[1]/p[3]/button"));
             buttonSubmitResult = driver.findElement
                     (By.xpath("/html/body/div[1]/main/div/div/div[2]/div/div[2]/div/form/button"));
-            radioDiv.addAll(driver.findElements(By.className("radio")));
+            //radioDiv.addAll(driver.findElements(By.className("radio")));
+            radioDiv.addAll(driverWait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.className("radio"))));
             for (int i = 0; i < radioDiv.size(); i++) {
                 switch (i) {
                     case 0:
@@ -78,6 +80,7 @@ public class InterviewPage extends BasePage {
 
     public void closeGoogleFrame() {
         switchToGoogleFrame();
+        driverWait.until(ExpectedConditions.elementToBeClickable(buttonNoGoogleFrame));
         buttonNoGoogleFrame.click();
         switchToBaseFrame();
     }
@@ -88,11 +91,18 @@ public class InterviewPage extends BasePage {
 
     public void randomAnswerDiv() throws InterruptedException {
 
+//        driverWait.until(ExpectedConditions.elementToBeClickable(radioDiscirbeInterest.get(0)));
+//        driverWait.until(ExpectedConditions.not(
+//                ExpectedConditions.frameToBeAvailableAndSwitchToIt(By.xpath("/html/body/div[6]/div/iframe"))));
+//        driverWait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("/html/body/div[1]/main/div/div/div[2]/div/div[2]/div/form/div[1]/label[1]/button")));
+
+
+
         int size = radioDiscirbeInterest.size();
         Random rnd = new Random(System.currentTimeMillis());
         int randomNumber = rnd.nextInt(size - 0);
         radioDiscirbeInterest.get(randomNumber).click();
-        Thread.sleep(500);
+        Thread.sleep(500);  //Для наглядности происходящего на экране
 
         size = radioTotalTeamMembers.size();
         rnd = new Random(System.currentTimeMillis());
@@ -116,5 +126,13 @@ public class InterviewPage extends BasePage {
             radioText.click();
             Thread.sleep(500);
         }
+    }
+
+    public void buttonSubmitResultClick() {
+        buttonSubmitResult.click();
+        driverWait.until(ExpectedConditions.invisibilityOfElementLocated(
+                By.xpath("/html/body/div[1]/main/div/div/div[2]/div/div[2]/div/form/button")));
+//        driverWait.until(ExpectedConditions.not(ExpectedConditions.presenceOfElementLocated(
+//                By.xpath("/html/body/div[1]/main/div/div/div[2]/div/div[2]/div/form/button"))));
     }
 }

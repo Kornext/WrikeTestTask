@@ -4,6 +4,8 @@ import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
+import java.util.concurrent.TimeUnit;
+
 public class WebDriverSetting {
 
     public static FirefoxDriver driver;
