@@ -22,18 +22,18 @@ public class WebDriverSetting {
 
     public WebDriverSetting(String nameDriver) {
         this.nameDriver = nameDriver;
-//        switch (nameDriver) {
-//            case "firefox" : {
-//                System.setProperty("webdriver.gecko.driver", "C:\\Users\\Kornext_N\\FireFoxWebDriver\\geckodriver.exe");
-//                driver = new FirefoxDriver();
-//            }
-//            case "chrome" : {
-//                System.setProperty("webdriver.chrome.driver", "C:\\Users\\Kornext_N\\ChromeWebDriver\\chromedriver.exe");
-//                driver = new ChromeDriver();
-//            }
-//        }
-        System.setProperty("webdriver.gecko.driver", "C:\\Users\\Kornext_N\\FireFoxWebDriver\\geckodriver.exe");
-        driver = new FirefoxDriver();
+        switch (nameDriver) {
+            case "firefox" : {
+                System.setProperty("webdriver.gecko.driver", "C:\\Users\\Kornext_N\\FireFoxWebDriver\\geckodriver.exe");
+                driver = new FirefoxDriver();
+            }
+            case "chrome" : {
+                System.setProperty("webdriver.chrome.driver", "C:\\Users\\Kornext_N\\ChromeWebDriver\\chromedriver.exe");
+                driver = new ChromeDriver();
+            }
+        }
+//        System.setProperty("webdriver.gecko.driver", "C:\\Users\\Kornext_N\\FireFoxWebDriver\\geckodriver.exe");
+//        driver = new FirefoxDriver();
     }
 
     @Before
@@ -43,6 +43,7 @@ public class WebDriverSetting {
 
     @AfterClass
     public static void closeTest() {
+        driver.quit();
         driver.close();
     }
 }

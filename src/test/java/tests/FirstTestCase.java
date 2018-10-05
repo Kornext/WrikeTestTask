@@ -33,6 +33,7 @@ public class FirstTestCase extends WebDriverSetting {
         homePage.getPage();
         homePage.fillElements();
         homePage.buttonGetStartForFree.click();
+        System.out.println("1 Step Completed");
 
         //Fill in the email field with random generated value of email with mask
         // “<random_text>+wpt@wriketask.qaa” (e.g. “abcdef+wpt@wriketask.qaa”);
@@ -47,7 +48,6 @@ public class FirstTestCase extends WebDriverSetting {
         homePage.buttonCreateAccClick();
         Assert.assertEquals(interviewPage.getPageURL(), driver.getCurrentUrl());
         interviewPage.fillElements();
-        Thread.sleep(4000);
         interviewPage.closeGoogleFrame();
 
 
