@@ -5,11 +5,13 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import ru.sbtqa.tag.pagefactory.annotations.PageEntry;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+@PageEntry(title = "Interview", url = "/interview")
 public class InterviewPage extends BasePage {
 
     String pageURL = "https://www.wrike.com/resend/";
@@ -120,7 +122,8 @@ public class InterviewPage extends BasePage {
         if (radioYouTeemFollow.get(randomNumber).getText().contains("Other")) {
             WebElement radioText = radioYouTeemFollow.get(randomNumber).findElement(
                     By.xpath("/html/body/div[1]/main/div/div/div[2]/div/div[2]/div/form/div[3]/label[3]/button/span/input"));
-            String randomText = org.apache.commons.lang3.RandomStringUtils.random(7, true, false);
+            String randomText = "test";
+                    //org.apache.commons.lang3.RandomStringUtils.random(7, true, false);
             randomText = randomText.toLowerCase();
             radioText.sendKeys(randomText);
             radioText.click();

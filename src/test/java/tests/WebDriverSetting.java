@@ -2,17 +2,9 @@ package tests;
 
 import org.junit.AfterClass;
 import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.junit.runners.Parameterized;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
-
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.concurrent.TimeUnit;
 
 public class WebDriverSetting {
 

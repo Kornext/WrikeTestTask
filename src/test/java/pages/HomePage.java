@@ -5,18 +5,30 @@ import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import ru.sbtqa.tag.pagefactory.annotations.ElementTitle;
+import ru.sbtqa.tag.pagefactory.annotations.PageEntry;
+import ru.sbtqa.tag.pagefactory.annotations.RedirectsTo;
 
-public class HomePage extends BasePage {
+@PageEntry(title = "Home", url = "/home")
+public class HomePage {
 
     private String pageURL = "https://www.wrike.com/";
+    @ElementTitle("ButtonStartUP")
+    @FindBy(xpath = "//div[@class='r']//button")
     public WebElement buttonGetStartForFree;
+    @ElementTitle("InputEmailOnModalForm")
+    @FindBy(xpath = "//label[@class='modal-form-trial__label']/input")
     public WebElement emailTextField;
+    @ElementTitle("ButtonCreateAccountOnModalForm")
+    @FindBy(xpath = "//label[@class='modal-form-trial__label']/button")
+    //@RedirectsTo(page = InterviewPage.class)
     public WebElement buttonCreateMyWrikeAcc;
 
-    public HomePage(WebDriver driver) {
-        super(driver);
+    public HomePage() {
+
     }
 
     public void fillElements() {

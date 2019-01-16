@@ -5,12 +5,8 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import pages.*;
-
-import java.lang.reflect.Array;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
-import java.util.List;
 
 @RunWith(Parameterized.class)
 public class FirstTestCase extends WebDriverSetting {
@@ -37,8 +33,8 @@ public class FirstTestCase extends WebDriverSetting {
 
         //Fill in the email field with random generated value of email with mask
         // “<random_text>+wpt@wriketask.qaa” (e.g. “abcdef+wpt@wriketask.qaa”);
-        String emailRandom = org.apache.commons.lang3.RandomStringUtils.
-                random(5, true, false);
+        String emailRandom = "test";
+                //org.apache.commons.lang3.RandomStringUtils.random(5, true, false);
         emailRandom = emailRandom.toLowerCase() + "wpt@wriketask.qaa";
         homePage.inputEmail(emailRandom);
 
