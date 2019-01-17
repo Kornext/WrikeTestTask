@@ -19,15 +19,11 @@ public class FirstTestCase extends WebDriverSetting {
 
     public FirstTestCase(String ss) {
         super(ss);
-        interviewPage = new InterviewPage(driver);
-        homePage = new HomePage(driver);
     }
 
     @Test
     public void firstStep() throws InterruptedException {
         //Click "Get started for free" button near "Login" button;
-        homePage.getPage();
-        homePage.fillElements();
         homePage.buttonGetStartForFree.click();
         System.out.println("1 Step Completed");
 
@@ -36,14 +32,11 @@ public class FirstTestCase extends WebDriverSetting {
         String emailRandom = "test";
                 //org.apache.commons.lang3.RandomStringUtils.random(5, true, false);
         emailRandom = emailRandom.toLowerCase() + "wpt@wriketask.qaa";
-        homePage.inputEmail(emailRandom);
-
         //Click on "Create my Wrike account" button +
         // + check with assertion that you are moved to the next page;
 
-        homePage.buttonCreateAccClick();
+        homePage.buttonClickCreateAccClick();
         Assert.assertEquals(interviewPage.getPageURL(), driver.getCurrentUrl());
-        interviewPage.fillElements();
         interviewPage.closeGoogleFrame();
 
 

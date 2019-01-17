@@ -2,34 +2,35 @@ package pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import ru.sbtqa.tag.pagefactory.Page;
+import ru.sbtqa.tag.pagefactory.PageFactory;
+import ru.sbtqa.tag.pagefactory.annotations.ActionTitle;
 
 import java.util.concurrent.TimeUnit;
 
-public class BasePage {
+public class BasePage extends Page {
 
-    public WebDriver driver;
-    public WebDriverWait driverWait;
-
-    public BasePage(WebDriver driver) {
-        this.driver = driver;
-        driverWait= new WebDriverWait(driver, 5000);
-        driver.manage().timeouts().implicitlyWait(8, TimeUnit.SECONDS); // Find By Locator wait
-        driver.manage().timeouts().pageLoadTimeout(8, TimeUnit.SECONDS); //Load Page wait
-        driver.manage().timeouts().setScriptTimeout(8, TimeUnit.SECONDS); //JS Scrip Wait
+    public BasePage() {
+        if(PageFactory.isDriverInitialized()) {
+            WebDriver driver = PageFactory.getDriver();
+            driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS); // Find By Locator wait
+            driver.manage().timeouts().pageLoadTimeout(5, TimeUnit.SECONDS); //Load Page wait
+            driver.manage().timeouts().setScriptTimeout(5, TimeUnit.SECONDS); //JS Scrip Wait
+        }
     }
 
-    public void click(By elementLocation) {
-        driver.findElement(elementLocation).click();
+    public String getCurrentURL() {
+        return PageFactory.getDriver().getCurrentUrl();
     }
 
-    public void writeText(By elementLocation, String text) {
-        driver.findElement(elementLocation).sendKeys(text);
+    @ActionTitle("открывает URL")
+    public void openPage(String URL) {
+        PageFactory.getDriver().get(URL);
     }
 
-    public String readText(By elementLocation) {
-        return driver.findElement(elementLocation).getText();
+    public WebDriverWait getWebDriverWait() {
+        return new WebDriverWait(PageFactory.getWebDriver(), PageFactory.getTimeOutInSeconds());
     }
 }
