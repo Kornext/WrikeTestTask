@@ -13,12 +13,12 @@ import java.util.concurrent.TimeUnit;
 public class BasePage extends Page {
 
     public BasePage() {
-        if(PageFactory.isDriverInitialized()) {
-            WebDriver driver = PageFactory.getDriver();
-            driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS); // Find By Locator wait
-            driver.manage().timeouts().pageLoadTimeout(5, TimeUnit.SECONDS); //Load Page wait
-            driver.manage().timeouts().setScriptTimeout(5, TimeUnit.SECONDS); //JS Scrip Wait
-        }
+//        if(PageFactory.isDriverInitialized()) {
+//            WebDriver driver = PageFactory.getDriver();
+//            driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS); // Find By Locator wait
+//            driver.manage().timeouts().pageLoadTimeout(15, TimeUnit.SECONDS); //Load Page wait
+//            driver.manage().timeouts().setScriptTimeout(15, TimeUnit.SECONDS); //JS Scrip Wait
+//        }
     }
 
     public String getCurrentURL() {

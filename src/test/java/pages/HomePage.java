@@ -1,16 +1,14 @@
 package pages;
 
-import org.junit.rules.ExpectedException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-import org.springframework.util.Assert;
 import ru.sbtqa.tag.pagefactory.PageFactory;
 import ru.sbtqa.tag.pagefactory.annotations.ActionTitle;
 import ru.sbtqa.tag.pagefactory.annotations.ElementTitle;
 import ru.sbtqa.tag.pagefactory.annotations.PageEntry;
-import ru.sbtqa.tag.pagefactory.annotations.RedirectsTo;
+import ru.yandex.qatools.htmlelements.loader.decorator.HtmlElementDecorator;
+import ru.yandex.qatools.htmlelements.loader.decorator.HtmlElementLocatorFactory;
 
 //TODO ADD WAITINGS
 
@@ -19,27 +17,27 @@ public class HomePage extends BasePage {
 
     private String pageURL = "https://www.wrike.com/";
 
-    @ElementTitle("ButtonStartUP")
+    @ElementTitle("кнопка")
     @FindBy(xpath = "//div[@class='r']//button")
-    public WebElement buttonGetStartForFree;
+    private WebElement buttonGetStartForFree;
 
     @ElementTitle("InputEmailOnModalForm")
     @FindBy(xpath = "//label[@class='modal-form-trial__label']/input")
-    public WebElement emailTextField;
+    private WebElement emailTextField;
 
     @ElementTitle("ButtonCreateAccountOnModalForm")
     @FindBy(xpath = "//label[@class='modal-form-trial__label']/button")
-    @RedirectsTo(page = InterviewPage.class)
-    public WebElement buttonCreateMyWrikeAcc;
+    //@RedirectsTo(page = InterviewPage.class)
+    private WebElement buttonCreateMyWrikeAcc;
 
     @ElementTitle("ModalFormInputEmail")
     @FindBy(xpath = "//div[@id='modal-pro']//form")
-    public WebElement inputEmailForm;
+    private WebElement inputEmailForm;
 
     public HomePage() {
-        PageFactory.initElements(PageFactory.getDriver(), this); //Для WebElement
-        //PageFactory.initElements(new HtmlElementDecorator(new HtmlElementLocatorFactory(
-        //        PageFactory.getDriver())), this);
+        //PageFactory.initElements(PageFactory.getDriver(), this); //Для WebElement
+        PageFactory.initElements(new HtmlElementDecorator(new HtmlElementLocatorFactory(
+                PageFactory.getDriver())), this);
     }
 
     @ActionTitle("нажимает на кнопку Get started for free")

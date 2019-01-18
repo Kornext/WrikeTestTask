@@ -7,6 +7,8 @@ import ru.sbtqa.tag.pagefactory.PageFactory;
 import ru.sbtqa.tag.pagefactory.annotations.ActionTitle;
 import ru.sbtqa.tag.pagefactory.annotations.ElementTitle;
 import ru.sbtqa.tag.pagefactory.annotations.PageEntry;
+import ru.yandex.qatools.htmlelements.loader.decorator.HtmlElementDecorator;
+import ru.yandex.qatools.htmlelements.loader.decorator.HtmlElementLocatorFactory;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,35 +23,37 @@ public class InterviewPage extends BasePage {
 
     @ElementTitle("ButtonResendEmail")
     @FindBy(xpath = "//div[@class='wg-grid']//button[text()='Resend email']")
-    public WebElement buttonResendEmail;
+    private WebElement buttonResendEmail;
 
     @ElementTitle("ButtonSubmitResult")
     @FindBy(xpath = "//button[text()='Submit results']")
-    public WebElement buttonSubmitResult;
+    private WebElement buttonSubmitResult;
 
     @ElementTitle("ButtonComment")
     @FindBy(xpath = "//input[@placeholder='Your comment']")
-    WebElement radioCommentInputButton;
+    private WebElement radioCommentInputButton;
 
     @ElementTitle("GoogleFrame")
     @FindBy(xpath = "//iframe[@tabindex='0']")
-    WebElement googleFrame;
+    private WebElement googleFrame;
 
     @ElementTitle("ButtonNoOnGoogleFrame")
     @FindBy(xpath = "//span[text()='NO']")
-    WebElement buttonNoGoogleFrame;
+    private WebElement buttonNoGoogleFrame;
 
     @FindBy(xpath = "//button[text()='Very interested']/../..//input") //Первая "линия" кнопок
-    List<WebElement> radioDiscirbeInterest = new ArrayList<>();
+    private List<WebElement> radioDiscirbeInterest = new ArrayList<>();
 
     @FindBy(xpath = "//button[text()='16–25']/../..//input") //Вторая "линия" кнопок
-    List<WebElement> radioTotalTeamMembers = new ArrayList<>();
+    private List<WebElement> radioTotalTeamMembers = new ArrayList<>();
 
     @FindBy(xpath = "//button[text()='Yes']/../..//input[@name]")
-    List<WebElement> radioYouTeemFollow = new ArrayList<>();
+    private List<WebElement> radioYouTeemFollow = new ArrayList<>();
 
     public InterviewPage() {
-
+        //PageFactory.initElements(PageFactory.getDriver(), this); //Для WebElement
+        PageFactory.initElements(new HtmlElementDecorator(new HtmlElementLocatorFactory(
+                PageFactory.getDriver())), this);
     }
 
     @ActionTitle("Закрыть Google окно")
@@ -101,6 +105,11 @@ public class InterviewPage extends BasePage {
 
     public String getPageURL() {
         return pageURL;
+    }
+
+    @ActionTitle("кнопка SubmitResult не кликабельна")
+    public boolean isSubmitButtonClickable(){
+        return buttonSubmitResult.isDisplayed();
     }
 
     public String getFacebookURL() {
