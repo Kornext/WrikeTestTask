@@ -12,10 +12,11 @@ import ru.yandex.qatools.htmlelements.loader.decorator.HtmlElementLocatorFactory
 
 //TODO ADD WAITINGS
 
-@PageEntry(title = "Home", url = "/home")
+//@PageEntry(title = "Home", url = "https://www.wrike.com")
+@PageEntry(title = "Home")
 public class HomePage extends BasePage {
 
-    private String pageURL = "https://www.wrike.com/";
+    //private String pageURL = "https://www.wrike.com/";
 
     @ElementTitle("кнопка")
     @FindBy(xpath = "//div[@class='r']//button")
@@ -35,9 +36,9 @@ public class HomePage extends BasePage {
     private WebElement inputEmailForm;
 
     public HomePage() {
-        //PageFactory.initElements(PageFactory.getDriver(), this); //Для WebElement
-        PageFactory.initElements(new HtmlElementDecorator(new HtmlElementLocatorFactory(
-                PageFactory.getDriver())), this);
+        PageFactory.initElements(PageFactory.getDriver(), this); //Для WebElement
+        //PageFactory.initElements(new HtmlElementDecorator(new HtmlElementLocatorFactory(
+                //PageFactory.getDriver())), this);
     }
 
     @ActionTitle("нажимает на кнопку Get started for free")
